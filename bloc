@@ -1,0 +1,46 @@
+
+  Dim area As DrawingArea
+  
+  With area = New DrawingArea(Me)
+    .X = 10
+    .Y = 10
+    .W = 627
+    .H = 400
+  End With
+  
+  VideoControl(area)
+  
+  With mp
+    .Url = Media.URL("/home/adrian/Descargas/prueba.mp4")
+    .State = 4
+    .State = 2
+  End With
+  
+  Wait 0.1
+  
+  salidaVideo.SetWindow(area)
+  
+  Me.Show
+  
+  With mp
+    .Play()
+    .Position = 0.00
+    Wait 0.1
+    mp.Pause()
+  End With
+  
+  End
+Public Sub VideoControl(Drar As DrawingArea)
+
+  salidaVideo = New MediaControl(mp, "ximagesink")
+  
+  mp.Video.Output = salidaVideo
+  
+  salidaVideo.SetWindow(Drar)
+End
+
+Public Sub Form_Close()
+  
+  mp.Stop()
+  
+End
